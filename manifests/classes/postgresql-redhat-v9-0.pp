@@ -4,5 +4,5 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
       unless => "/usr/bin/yum list installed | /bin/grep pgdg"
   }
   package { "postgresql90-server": ensure => installed }
-  package { "postgresql-devel": ensure => installed }
+  package { "postgresql90-devel": ensure => installed }
 }
