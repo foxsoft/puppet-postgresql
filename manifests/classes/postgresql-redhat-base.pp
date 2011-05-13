@@ -1,8 +1,6 @@
 class postgresql::redhat::base {
-  yumrepo { "PGDG":
-     baseurl => "http://yum.pgrpms.org/reporpms/9.0/pgdg-centos-9.0-2.noarch.rpm",
-     descr => "PostgreSQL PGDG RPMs for CentOS ",
-     enabled => 1,
-     gpgcheck => 0
+  exec { "install-pgdg":
+      command => "rpm -i http://yum.pgrpms.org/reporpms/9.0/pgdg-centos-9.0-2.noarch.rpm",
+      unless => "yum list installed | grep pgdg"
   }
 }
