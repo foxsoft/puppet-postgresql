@@ -17,6 +17,9 @@ class postgresql {
         default: { fail "postgresql not available for ${operatingsystem}/${lsbdistcodename}"}
       }
     }
+    CentOS: {
+      default: { notice "this is ${lsbdistcodename}" }
+    }
     default: { notice "Unsupported operatingsystem ${operatingsystem}" }
   }
 }
