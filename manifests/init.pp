@@ -20,7 +20,7 @@ class postgresql {
     CentOS: {
       case $operatingsystemrelease {
         5.5: { notice "This is 5.5" }
-        5.6: { notice "This is 5.6" }
+        5.6: { include postgresql::redhat::v9-0 }
       }
     }
     default: { notice "Unsupported operatingsystem ${operatingsystem}" }
