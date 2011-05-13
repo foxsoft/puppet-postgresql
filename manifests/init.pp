@@ -18,7 +18,7 @@ class postgresql {
       }
     }
     CentOS: {
-      notice "this is ${lsbdistcodename}"
+      notice "this is ${$operatingsystemrelease}"
     }
     default: { notice "Unsupported operatingsystem ${operatingsystem}" }
   }
