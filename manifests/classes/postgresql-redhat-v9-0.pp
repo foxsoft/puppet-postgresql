@@ -14,7 +14,7 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
     require => Package["postgresql90-server"],
   }
   
-  service { postgresql-9.0:
+  service { "postgresql-9.0":
     ensure => running,
     require => Package["postgresql90-server"],
   }
