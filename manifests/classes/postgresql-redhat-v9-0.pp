@@ -7,16 +7,16 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
   package { "postgresql90-devel": ensure => installed, require => Exec["install-pgdg"] }
   
   exec { "init-db":
-    command => "service postgresql-9.0 start",
+    command => "/sbin/service postgresql-9.0 start",
     require => Package["postgresql90-server"],
   }
   
   
   Service["postgresql-9.0"] {
-    start   => "service postgresql-9.0 start",
-    status  => "service postgresql-9.0 status",
-    stop    => "service postgresql-9.0 stop",
-    restart => "service postgresql-9.0 restart",
+    start   => "/sbin/service postgresql-9.0 start",
+    status  => "/sbin/service postgresql-9.0 status",
+    stop    => "/sbin/service postgresql-9.0 stop",
+    restart => "/sbin/service postgresql-9.0 restart",
     require => Exec["init-db"],
   }
   
