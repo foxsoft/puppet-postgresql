@@ -6,11 +6,14 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
   package { "postgresql90-server": ensure => installed, require => Exec["install-pgdg"] }
   package { "postgresql90-devel": ensure => installed, require => Exec["install-pgdg"] }
   
+  #
+  # TODO: ensure that we don't run init-db unnecessarily
+  #
+  
   exec { "init-db":
     command => "/sbin/service postgresql-9.0 initdb",
     require => Package["postgresql90-server"],
   }
-  
   
   Service["postgresql-9.0"] {
     start   => "/sbin/service postgresql-9.0 start",
@@ -23,5 +26,4 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
   service { "postgresql-9.0":
     ensure => running,
   }
-  
 }
