@@ -7,7 +7,7 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
   package { "postgresql90-devel": ensure => installed, require => Exec["install-pgdg"] }
   
   exec { "init-db":
-    command => "/sbin/service postgresql-9.0 start",
+    command => "/sbin/service postgresql-9.0 initdb",
     require => Package["postgresql90-server"],
   }
   
