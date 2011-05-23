@@ -28,12 +28,7 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
     status  => "/sbin/service postgresql-9.0 status",
     stop    => "/sbin/service postgresql-9.0 stop",
     restart => "/sbin/service postgresql-9.0 restart",
-    require => Exec["init-db"],
-  }
-  
-  service { "postgresql-9.0":
-    ensure => running,
-    require => Exec["create-user"],
+    require => [Exec["init-db"], Exec["create-user"]],
   }
   
   file {"/usr/bin/pg_config":
