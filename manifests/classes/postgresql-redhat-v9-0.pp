@@ -7,7 +7,7 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
   package { "postgresql90-devel": ensure => installed, require => Exec["install-pgdg"] }
 
   exec { "create-user":
-    command => "/bin/su postgres -c '/usr/pgsql-9.0/bin/createuser --superuser deploy' 2>&1"
+    command => "/bin/su postgres -c '/usr/pgsql-9.0/bin/createuser --superuser deploy' || true"
   }
   
   #
