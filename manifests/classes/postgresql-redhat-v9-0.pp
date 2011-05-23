@@ -7,6 +7,14 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
   package { "postgresql90-devel": ensure => installed, require => Exec["install-pgdg"] }
   
   #
+  # TODO: do we need to remove the 2>/dev/null hack?
+  #
+  
+  exec { "create-user":
+    command => "createuser --superuser deploy 2>/dev/null"
+  }
+  
+  #
   # TODO: ensure that we don't run init-db unnecessarily
   #
   
@@ -25,5 +33,11 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
   
   service { "postgresql-9.0":
     ensure => running,
+    require => Exec["create-user"],
   }
+  
+  file {"/usr/bin/pg_config":
+    ensure => "/usr/pgsql-9.0/bin/pg_config"
+  }
+  
 }
