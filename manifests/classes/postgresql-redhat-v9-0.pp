@@ -11,7 +11,7 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
   #
   
   exec { "create-user":
-    command => "createuser --superuser deploy 2>/dev/null"
+    command => "/usr/pgsql-9.0/bin/createuser --superuser deploy 2>/dev/null"
   }
   
   #
