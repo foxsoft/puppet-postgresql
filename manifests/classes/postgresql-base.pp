@@ -41,7 +41,7 @@ class postgresql::base {
     ensure => $lens,
     mode   => 0644,
     owner  => "root",
-    source => "puppet:///postgresql/pg_hba.aug",
+    source => "puppet:///modules/postgresql/pg_hba.aug",
   }
 
 }
