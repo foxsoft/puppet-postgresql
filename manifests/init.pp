@@ -1,7 +1,7 @@
 import "classes/*.pp"
 import "definitions/*.pp"
   
-class postgresql {
+class postgresql($version=undef) {
   case $operatingsystem {
     Debian: { 
       case $lsbdistcodename {
@@ -13,7 +13,12 @@ class postgresql {
     } 
     Ubuntu: {
       case $lsbdistcodename {
-        lucid :  { include postgresql::ubuntu::v8-4 }
+        lucid : {
+          case $version {
+            9.0:     { include postgresql::ubuntu::lucid::v9-0 }
+            default: { include postgresql::ubuntu::v8-4 }
+          }
+        }
         default: { fail "postgresql not available for ${operatingsystem}/${lsbdistcodename}"}
       }
     }
