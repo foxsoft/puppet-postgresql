@@ -37,10 +37,18 @@ class postgresql::base {
   if versioncmp($augeasversion, '0.7.3') < 0 { $lens = present }
   else { $lens = absent }
 
+  file { "/usr/share/augeas/lenses/contrib":
+    ensure => directory,
+    mode => 0644,
+    owner => root,
+    group => root;
+  }
+
   file { "/usr/share/augeas/lenses/contrib/pg_hba.aug":
     ensure => $lens,
     mode   => 0644,
     owner  => "root",
+    require => File["/usr/share/augeas/lenses/contrib"],
     source => "puppet:///modules/postgresql/pg_hba.aug",
   }
 
