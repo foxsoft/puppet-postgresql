@@ -8,7 +8,7 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
 
   exec { "create-user":
     command => "/bin/su postgres -c '/usr/pgsql-9.0/bin/createuser --superuser deploy' || true",
-    unless => "/bin/su postgres -c `/usr/pgsql-9.0/bin/psql template1 -c \"select * from pg_user where usename = \'deploy\';\"` | /bin/grep deploy",
+    unless => "/bin/su postgres -c `/usr/pgsql-9.0/bin/psql template1 -c \"select * from pg_user where usename = 'deploy';\"` | /bin/grep deploy",
   }
   
   exec { "init-db":
