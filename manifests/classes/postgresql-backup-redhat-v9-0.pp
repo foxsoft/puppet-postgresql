@@ -11,10 +11,15 @@ Parameters:
 */
 class postgresql::backup::redhat::v9-0 {
 
-  if ( ! $postgresql_backupdir ) {
-    $postgresql_backupdir = "/var/backups/pgsql"
+  $postgresql_backupdir = "/var/backups/pgsql"
+  
+  file {"/var/backups":
+    ensure => directory,
+    owner => "root",
+    group => "root",
+    mode => 755
   }
-
+  
   file {$postgresql_backupdir:
     ensure  => directory,
     owner   => "postgres",

@@ -1,10 +1,4 @@
-#!/bin/sh
-
-<% if has_variable?("postgresql_backupdir") -%>
-BKPDIR="<%= postgresql_backupdir %>"
-<% else -%>
 BKPDIR="/var/backups/pgsql/"
-<% end -%>
 mkdir -p $BKPDIR
 DAY=$(date +%d)
 DAY_OF_WEEK=$(date +%u)
