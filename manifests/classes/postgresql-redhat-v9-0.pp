@@ -32,4 +32,9 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
     ensure => "/usr/pgsql-9.0/bin/pg_config"
   }
   
+  user { "postgres":
+    ensure => present,
+    require => Package["postgresql-9.0"],
+  }
+  
 }
