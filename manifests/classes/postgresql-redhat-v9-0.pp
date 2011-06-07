@@ -34,7 +34,7 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
   
   user { "postgres":
     ensure => present,
-    require => Package["postgresql-9.0"],
+    require => Package["postgresql90-server"],
   }
   
 }
