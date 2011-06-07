@@ -7,16 +7,14 @@ class postgresql::redhat::v9-0 inherits postgresql::redhat::base {
   package { "postgresql90-devel": ensure => installed, require => Exec["install-pgdg"] }
 
   exec { "create-user":
-    command => "/bin/su postgres -c '/usr/pgsql-9.0/bin/createuser --superuser deploy' || true"
+    command => "/bin/su postgres -c '/usr/pgsql-9.0/bin/createuser --superuser deploy' || true",
+    unless => "psql template1 -c \"select * from pg_user where usename = 'deploy';\" | grep deploy",
   }
-  
-  #
-  # TODO: ensure that we don't run init-db unnecessarily
-  #
   
   exec { "init-db":
     command => "/sbin/service postgresql-9.0 initdb",
     require => Package["postgresql90-server"],
+    unless => "/usr/pgsql-9.0/bin/pg_ctl status -D /var/lib/pgsql/9.0/data",
   }
   
   Service["postgresql-9.0"] {

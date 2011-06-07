@@ -10,7 +10,7 @@ class postgresql {
         squeeze: { include postgresql::debian::v8-4 }
         default: { fail "postgresql not available for ${operatingsystem}/${lsbdistcodename}"}
       }
-    } 
+    }
     Ubuntu: {
       case $lsbdistcodename {
         lucid :  { include postgresql::ubuntu::v8-4 }
@@ -19,7 +19,6 @@ class postgresql {
     }
     CentOS: {
       case $operatingsystemrelease {
-        5.5: { notice "This is 5.5" }
         5.6: { include postgresql::redhat::v9-0 }
       }
     }
