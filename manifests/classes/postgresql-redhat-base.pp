@@ -1,3 +1,0 @@
-class postgresql::redhat::base {
-
-}

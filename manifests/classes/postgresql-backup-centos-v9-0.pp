@@ -1,15 +1,4 @@
-/*
-==Class: postgresql::backup
-
-This class will add a shell script based on the utility pg_dump to make 
-consitent backups each nights.
-
-Parameters:
- $postgresql_backupdir:
-   this global variable is used to set the default backup directory
-
-*/
-class postgresql::backup::redhat::v9-0 {
+class postgresql::backup::centos::v9-0 {
 
   $postgresql_backupdir = "/var/backups/pgsql"
   

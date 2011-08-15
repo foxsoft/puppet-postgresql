@@ -19,7 +19,7 @@ class postgresql {
     }
     CentOS: {
       case $operatingsystemrelease {
-        5.6: { include postgresql::redhat::v9-0 }
+        5.6: { include postgresql::centos::v9-0 }
       }
     }
     default: { notice "Unsupported operatingsystem ${operatingsystem}" }
