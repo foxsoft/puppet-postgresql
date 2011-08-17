@@ -5,7 +5,7 @@ DAY_OF_WEEK=$(date +%u)
 MONTH=$(date +%m)
 FULL_MONTH=$(date +%B | tr 'A-Z' 'a-z')
 YEAR=$(date +%Y)
-for LINE in `psql -l | tail -n+4 | tail -r | tail -n+3 | tail -r | awk '{ print $1 }'| grep -v "test$\|dev$\|^template\|^postgres$\|^|"`; do
+for LINE in `psql -l | awk '/^ \w+/ {print $1}' | grep -v "test$\|dev$\|^template\|^postgres$\|^|"`; do
   DAILY_OUT="$BKPDIR/$LINE-$YEAR$DAY$MONTH-daily.sql"
   pg_dump $LINE > $DAILY_OUT
   if [[ $DAY_OF_WEEK == "6" ]] ; then
