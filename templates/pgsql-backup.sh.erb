@@ -16,9 +16,9 @@ for LINE in `psql -l | tail -n+4 | tail -r | tail -n+3 | tail -r | awk '{ print 
       cp $DAILY_OUT $MONTHLY_OUT
     fi
   fi
-  find BKPDIR -type f -mtime 7 | grep "daily.sql$" | xargs rm
-  find BKPDIR -type f -mtime 28 | grep "weekly.sql$" | xargs rm
-  find BKPDIR -type f -mtime 168 | grep "monthly.sql$" | xargs rm
+  find $BKPDIR -type f -mtime 7 | grep "daily.sql$" | xargs rm
+  find $BKPDIR -type f -mtime 28 | grep "weekly.sql$" | xargs rm
+  find $BKPDIR -type f -mtime 168 | grep "monthly.sql$" | xargs rm
 done
 
 
