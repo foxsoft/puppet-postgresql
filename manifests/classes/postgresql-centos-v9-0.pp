@@ -33,7 +33,7 @@ class postgresql::centos::v9-0 inherits postgresql::centos::base {
   }
   
   file {"/usr/bin/psql":
-    ensure => "/usr/pgsql-9.0/bin/pg_config"
+    ensure => "/usr/pgsql-9.0/bin/psql"
   }
 
   file {"/usr/bin/pg_dump":
