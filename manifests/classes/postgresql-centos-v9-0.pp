@@ -43,6 +43,14 @@ class postgresql::centos::v9-0 inherits postgresql::centos::base {
   file {"/usr/bin/pg_ctl":
     ensure => "/usr/pgsql-9.0/bin/pg_ctl"
   }
+
+  file {"/usr/bin/createuser":
+    ensure => "/usr/pgsql-9.0/bin/createuser"
+  }
+
+  file {"/usr/bin/createdb":
+    ensure => "/usr/pgsql-9.0/bin/createdb"
+  }
   
   user { "postgres":
     ensure => present,
