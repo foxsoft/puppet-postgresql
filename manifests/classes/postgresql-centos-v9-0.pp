@@ -32,6 +32,18 @@ class postgresql::centos::v9-0 inherits postgresql::centos::base {
     ensure => "/usr/pgsql-9.0/bin/pg_config"
   }
   
+  file {"/usr/bin/psql":
+    ensure => "/usr/pgsql-9.0/bin/pg_config"
+  }
+
+  file {"/usr/bin/pg_dump":
+    ensure => "/usr/pgsql-9.0/bin/pg_dump"
+  }
+
+  file {"/usr/bin/pg_ctl":
+    ensure => "/usr/pgsql-9.0/bin/pg_ctl"
+  }
+  
   user { "postgres":
     ensure => present,
     require => Package["postgresql90-server"],
