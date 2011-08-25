@@ -1,7 +1,7 @@
 class postgresql::centos::v9-0 inherits postgresql::centos::base {
   exec { "install-pgdg":
       command => "/bin/rpm -i http://yum.pgrpms.org/reporpms/9.0/pgdg-centos-9.0-2.noarch.rpm",
-      unless => "/usr/bin/yum list installed | /bin/grep pgdg"
+      creates => "/etc/yum.repos.d/pgdg-90-centos.repo"
   }
   package { "postgresql90-server": ensure => installed, require => Exec["install-pgdg"] }
   package { "postgresql90-devel": ensure => installed, require => Exec["install-pgdg"] }
