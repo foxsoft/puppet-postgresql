@@ -8,6 +8,7 @@ YEAR=$(date +%Y)
 for LINE in `psql -l | awk '/^ \w+/ {print $1}' | grep -v "test$\|dev$\|^template\|^postgres$\|^|"`; do
   DAILY_OUT="$BKPDIR/$LINE-$YEAR$DAY$MONTH-daily.sql"
   pg_dump $LINE > $DAILY_OUT
+  cp $DAILY_OUT $BKPDIR/$LINE-latest.sql
   if [[ $DAY_OF_WEEK == "6" ]] ; then
     WEEKLY_OUT="$BKPDIR/$LINE-$YEAR$DAY$MONTH-weekly.sql"
     cp $DAILY_OUT $WEEKLY_OUT
