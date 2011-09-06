@@ -61,7 +61,7 @@ class postgresql::centos::v9-0 inherits postgresql::centos::base {
     mode   => 0600,
     owner  => "postgres",
     group  => "postgres",
-    source => "puppet:///postgesql/pg_hba.conf",
+    source => "puppet:///postgresql/pg_hba.conf",
     notify => service["postgresql-9.0"]
   }
   
