@@ -57,4 +57,12 @@ class postgresql::centos::v9-0 inherits postgresql::centos::base {
     require => Package["postgresql90-server"],
   }
   
+  file {"/var/lib/pgsql/9.0/data":
+    mode   => 0600,
+    owner  => "postgres",
+    group  => "postgres",
+    source => "puppet:///postgesql/pg_hba.conf",
+    notify => service["postgresql-9.0"]
+  }
+  
 }
