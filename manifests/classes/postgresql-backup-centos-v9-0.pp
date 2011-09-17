@@ -1,6 +1,6 @@
 class postgresql::backup::centos::v9-0 {
   
-  if !defined (Package["postgresql-server"]) {
+  if !defined (User["postgres"]) {
   
     $postgresql_backupdir = "/var/backups/pgsql"
   
