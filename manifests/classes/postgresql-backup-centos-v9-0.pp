@@ -1,6 +1,6 @@
 class postgresql::backup::centos::v9-0 {
   
-  if !defined (User["postgres"]) {
+  if defined (User["postgres"]) {
   
     $postgresql_backupdir = "/var/backups/pgsql"
   
