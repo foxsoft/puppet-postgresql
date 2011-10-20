@@ -73,7 +73,8 @@ class postgresql::centos::v9-0 inherits postgresql::centos::base {
     owner  => "postgres",
     group  => "postgres",
     source => "puppet:///postgresql/pg_hba.conf",
-    notify => service["postgresql-9.0"]
+    notify => service["postgresql-9.0"],
+    require => Exec["init-db"]
   }
   
 }

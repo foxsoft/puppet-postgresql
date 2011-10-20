@@ -1,5 +1,6 @@
 class postgresql::backup::centos::v9-0 {
-
+  include postgresql::centos::v9-0
+  
   $postgresql_backupdir = "/var/backups/pgsql"
   
   file {"/var/backups":
@@ -16,7 +17,7 @@ class postgresql::backup::centos::v9-0 {
     mode    => 755,
     require => [Package["postgresql90-server"], User["postgres"]],
   }
-
+  
   file { "/usr/local/bin/pgsql-backup.sh":
     ensure  => present,
     owner   => root,
@@ -25,7 +26,7 @@ class postgresql::backup::centos::v9-0 {
     content => template("postgresql/pgsql-backup.sh.erb"),
     require => File[$postgresql_backupdir],
   }
-
+  
   cron { "pgsql-backup":
     command => "/usr/local/bin/pgsql-backup.sh",
     user    => "postgres",
