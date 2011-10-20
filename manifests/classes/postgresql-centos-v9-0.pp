@@ -1,14 +1,14 @@
 class postgresql::centos::v9-0 inherits postgresql::centos::base {
   yumrepo { "pgdg90":
-    baseurl => "http://yum.postgresql.org/9.0/redhat/rhel-$releasever-$basearch",
-    descr => "PostgreSQL 9.0 $releasever - $basearch",
+    baseurl => "http://yum.postgresql.org/9.0/redhat/rhel-\$releasever-\$basearch",
+    descr => "PostgreSQL 9.0 \$releasever - \$basearch",
     enabled => 1,
     gpgcheck => 0,
   }
 
   yumrepo { "pgdg90-source":
-    baseurl => "http://yum.postgresql.org/srpms/9.0/redhat/rhel-$releasever-$basearch",
-    descr => "PostgreSQL 9.0 $releasever - $basearch - source",
+    baseurl => "http://yum.postgresql.org/srpms/9.0/redhat/rhel-\$releasever-\$basearch",
+    descr => "PostgreSQL 9.0 \$releasever - \$basearch - source",
     enabled => 0,
     gpgcheck => 0,
     failovermethod => "priority",
